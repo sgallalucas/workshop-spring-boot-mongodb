@@ -27,9 +27,14 @@ public class UserService {
         return new UserDTO(user.orElseThrow(() -> new ObjectNotFoundException("Object not found.")));
     }
 
-    public void insertUser(UserDTO dto){
+    public void insertUser(UserDTO dto) {
         User user = convertToEntity(dto);
         userRepository.insert(user);
+    }
+
+    public void deleteUser(String id) {
+        findById(id);
+        userRepository.deleteById(id);
     }
 
     public User convertToEntity(UserDTO dto){
