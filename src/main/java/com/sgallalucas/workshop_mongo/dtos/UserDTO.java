@@ -3,7 +3,6 @@ package com.sgallalucas.workshop_mongo.dtos;
 import com.sgallalucas.workshop_mongo.domain.User;
 
 import java.io.Serializable;
-import java.util.Optional;
 
 public class UserDTO implements Serializable {
 
@@ -11,7 +10,7 @@ public class UserDTO implements Serializable {
     private String name;
     private String email;
 
-    public UserDTO(Optional<User> user){
+    public UserDTO(){
     }
 
     public UserDTO(User entity){

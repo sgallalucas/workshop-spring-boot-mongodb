@@ -26,4 +26,17 @@ public class UserService {
         Optional<User> user = userRepository.findById(id);
         return new UserDTO(user.orElseThrow(() -> new ObjectNotFoundException("Object not found.")));
     }
+
+    public void insertUser(UserDTO dto){
+        User user = convertToEntity(dto);
+        userRepository.insert(user);
+    }
+
+    public User convertToEntity(UserDTO dto){
+        User user = new User();
+        user.setId(dto.getId());
+        user.setName(dto.getName());
+        user.setEmail(dto.getEmail());
+        return user;
+    }
 }
