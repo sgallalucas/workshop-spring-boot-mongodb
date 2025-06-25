@@ -37,11 +37,11 @@ public class Post implements Serializable {
         this.id = id;
     }
 
-    public Instant getInstant() {
+    public Instant getDate() {
         return date;
     }
 
-    public void setInstant(Instant date) {
+    public void setDate(Instant date) {
         this.date = date;
     }
 

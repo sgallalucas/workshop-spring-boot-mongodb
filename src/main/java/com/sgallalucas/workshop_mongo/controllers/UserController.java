@@ -1,5 +1,6 @@
 package com.sgallalucas.workshop_mongo.controllers;
 
+import com.sgallalucas.workshop_mongo.dtos.PostDTO;
 import com.sgallalucas.workshop_mongo.dtos.UserDTO;
 import com.sgallalucas.workshop_mongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,4 +48,11 @@ public class UserController {
         userService.updateUser(id, dto);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<PostDTO>> findPost(@PathVariable String id) {
+        List<PostDTO> listDTO = userService.findPost(id);
+        return ResponseEntity.ok().body(listDTO);
+    }
+
 }

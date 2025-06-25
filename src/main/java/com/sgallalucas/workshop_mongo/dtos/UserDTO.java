@@ -1,14 +1,18 @@
 package com.sgallalucas.workshop_mongo.dtos;
 
+import com.sgallalucas.workshop_mongo.domain.Post;
 import com.sgallalucas.workshop_mongo.domain.User;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDTO implements Serializable {
 
     private String id;
     private String name;
     private String email;
+    private List<Post> posts = new ArrayList<>(); // atributo de associação
 
     public UserDTO(){
     }
@@ -41,5 +45,9 @@ public class UserDTO implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
     }
 }

@@ -1,6 +1,7 @@
 package com.sgallalucas.workshop_mongo.services;
 
 import com.sgallalucas.workshop_mongo.domain.User;
+import com.sgallalucas.workshop_mongo.dtos.PostDTO;
 import com.sgallalucas.workshop_mongo.dtos.UserDTO;
 import com.sgallalucas.workshop_mongo.repositories.UserRepository;
 import com.sgallalucas.workshop_mongo.services.exception.ObjectNotFoundException;
@@ -42,6 +43,12 @@ public class UserService {
         User newUser = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Object not found"));
         updateData(newUser, user);
         userRepository.save(newUser);
+    }
+
+    public List<PostDTO> findPost(String id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Object not found"));
+        List<PostDTO> listDTO = user.getPosts().stream().map(x -> new PostDTO(x)).collect(Collectors.toList());
+        return listDTO;
     }
 
     public void updateData(User newUser, User user) {
