@@ -2,6 +2,7 @@ package com.sgallalucas.workshop_mongo.config;
 
 import com.sgallalucas.workshop_mongo.domain.Post;
 import com.sgallalucas.workshop_mongo.domain.User;
+import com.sgallalucas.workshop_mongo.dtos.PostAuthorDTO;
 import com.sgallalucas.workshop_mongo.repositories.PostRepository;
 import com.sgallalucas.workshop_mongo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.Instant;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 @Configuration
@@ -34,10 +34,11 @@ public class Instantiation implements CommandLineRunner {
         User u2 = new User(null, "Gabriel", "gabriel@gmail.com");
         User u3 = new User(null, "Jorge", "jorge@gmail.com");
 
-        Post p1 = new Post(null, ins.atZone(ZoneId.systemDefault()).toInstant(), "Comentário", "Testando comentário", u1);
-        Post p2 = new Post(null, ins.atZone(ZoneId.systemDefault()).toInstant(), "Segundo comentário", "Testando segundo comentário", u1);
-
         userRepository.saveAll(Arrays.asList(u1, u2, u3));
+
+        Post p1 = new Post(null, ins.atZone(ZoneId.systemDefault()).toInstant(), "Comentário", "Testando comentário", new PostAuthorDTO(u1));
+        Post p2 = new Post(null, ins.atZone(ZoneId.systemDefault()).toInstant(), "Segundo comentário", "Testando segundo comentário", new PostAuthorDTO(u1));
+        
         postRepository.saveAll(Arrays.asList(p1, p2));
     }
 }
