@@ -1,11 +1,14 @@
 package com.sgallalucas.workshop_mongo.domain;
 
-import com.sgallalucas.workshop_mongo.dtos.PostAuthorDTO;
+import com.sgallalucas.workshop_mongo.dtos.CommentDTO;
+import com.sgallalucas.workshop_mongo.dtos.AuthorDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "post")
@@ -16,12 +19,13 @@ public class Post implements Serializable {
     private Instant date;
     private String title;
     private String body;
-    private PostAuthorDTO author; // Atributo de associação
+    private AuthorDTO author; // Atributo de associação
+    private List<CommentDTO> comments = new ArrayList<>(); // Atributo de associação
 
     public Post() {
     }
 
-    public Post(String id, Instant date, String title, String body, PostAuthorDTO author) {
+    public Post(String id, Instant date, String title, String body, AuthorDTO author) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -61,12 +65,20 @@ public class Post implements Serializable {
         this.body = body;
     }
 
-    public PostAuthorDTO getAuthor() {
+    public AuthorDTO getAuthor() {
         return author;
     }
 
-    public void setAuthor(PostAuthorDTO author) {
+    public void setAuthor(AuthorDTO author) {
         this.author = author;
+    }
+
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
     }
 
     @Override

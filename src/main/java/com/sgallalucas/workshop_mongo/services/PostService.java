@@ -25,4 +25,9 @@ public class PostService {
         Post post = postRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Object not found"));
         return new PostDTO(post);
     }
+
+    public List<PostDTO> findByTitle(String text) {
+       List<Post> post = postRepository.findByTitleContainingIgnoreCase(text);
+       return post.stream().map(x -> new PostDTO(x)).collect(Collectors.toList());
+    }
 }

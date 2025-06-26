@@ -2,7 +2,8 @@ package com.sgallalucas.workshop_mongo.config;
 
 import com.sgallalucas.workshop_mongo.domain.Post;
 import com.sgallalucas.workshop_mongo.domain.User;
-import com.sgallalucas.workshop_mongo.dtos.PostAuthorDTO;
+import com.sgallalucas.workshop_mongo.dtos.AuthorDTO;
+import com.sgallalucas.workshop_mongo.dtos.CommentDTO;
 import com.sgallalucas.workshop_mongo.repositories.PostRepository;
 import com.sgallalucas.workshop_mongo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,15 @@ public class Instantiation implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2, u3));
 
-        Post p1 = new Post(null, ins.atZone(ZoneId.systemDefault()).toInstant(), "Comentário", "Testando comentário", new PostAuthorDTO(u1));
-        Post p2 = new Post(null, ins.atZone(ZoneId.systemDefault()).toInstant(), "Segundo comentário", "Testando segundo comentário", new PostAuthorDTO(u1));
+        Post p1 = new Post(null, ins.atZone(ZoneId.systemDefault()).toInstant(), "Post", "Testando post", new AuthorDTO(u1));
+        Post p2 = new Post(null, ins.atZone(ZoneId.systemDefault()).toInstant(), "Segundo post", "Testando segundo post", new AuthorDTO(u1));
+
+        CommentDTO c1 = new CommentDTO("Testando comentário", ins.atZone(ZoneId.systemDefault()).toInstant(), new AuthorDTO(u2));
+        CommentDTO c2 = new CommentDTO("Testando segundo comentário", ins.atZone(ZoneId.systemDefault()).toInstant(), new AuthorDTO(u2));
+        CommentDTO c3 = new CommentDTO("Testando terceiro comentário", ins.atZone(ZoneId.systemDefault()).toInstant(), new AuthorDTO(u3));
+
+        p1.getComments().addAll(Arrays.asList(c1, c2));
+        p2.getComments().addAll(Arrays.asList(c3));
 
         postRepository.saveAll(Arrays.asList(p1, p2));
 

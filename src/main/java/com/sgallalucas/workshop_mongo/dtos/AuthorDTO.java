@@ -4,15 +4,15 @@ import com.sgallalucas.workshop_mongo.domain.User;
 
 import java.io.Serializable;
 
-public class PostAuthorDTO implements Serializable {
+public class AuthorDTO implements Serializable {
 
     private String id;
     private String name;
 
-    public PostAuthorDTO() {
+    public AuthorDTO() {
     }
 
-    public PostAuthorDTO(User entity) {
+    public AuthorDTO(User entity) {
         id = entity.getId();
         name = entity.getName();
     }
