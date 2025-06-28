@@ -37,8 +37,8 @@ public class Instantiation implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2, u3));
 
-        Post p1 = new Post(null, ins.atZone(ZoneId.systemDefault()).toInstant(), "Post", "Testando post", new AuthorDTO(u1));
-        Post p2 = new Post(null, ins.atZone(ZoneId.systemDefault()).toInstant(), "Segundo post", "Testando segundo post", new AuthorDTO(u1));
+        Post p1 = new Post(null, ins.atZone(ZoneId.systemDefault()).toInstant(), "Rocket League", "O Major está muito bom!", new AuthorDTO(u1));
+        Post p2 = new Post(null, ins.atZone(ZoneId.systemDefault()).toInstant(), "Futebol", "Ansioso para os jogos da Copa do Mundo", new AuthorDTO(u1));
 
         CommentDTO c1 = new CommentDTO("Testando comentário", ins.atZone(ZoneId.systemDefault()).toInstant(), new AuthorDTO(u2));
         CommentDTO c2 = new CommentDTO("Testando segundo comentário", ins.atZone(ZoneId.systemDefault()).toInstant(), new AuthorDTO(u2));
